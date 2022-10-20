@@ -1,26 +1,27 @@
 package org.jakarta.cart.shopping.controller;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
 import org.jakarta.cart.shopping.models.Product;
 import org.jakarta.cart.shopping.services.ProductService;
-import org.jakarta.cart.shopping.services.impl.ProductServiceJdbcImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet("/products/delete")
 public class DeleteProductServlet extends HttpServlet {
 
+    @Inject
+    @ProductServicePrincipal
+    private ProductService productService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection connection = (Connection) req.getAttribute("conn");
-        ProductService productService = new ProductServiceJdbcImpl(connection);
-
         long id;
         try {
             id = Long.parseLong(req.getParameter("id"));

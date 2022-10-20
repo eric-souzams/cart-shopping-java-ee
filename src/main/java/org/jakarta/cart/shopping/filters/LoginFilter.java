@@ -1,5 +1,6 @@
 package org.jakarta.cart.shopping.filters;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,9 +14,11 @@ import java.util.Optional;
 @WebFilter({"/cart/*", "/add-cart", "/products/form/*", "/products/delete/*"})
 public class LoginFilter implements Filter {
 
+    @Inject
+    private LoginService loginService;
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        LoginService loginService = new LoginServiceImpl();
         Optional<String> username = loginService.getUsername((HttpServletRequest) request);
 
         if (username.isPresent()) {

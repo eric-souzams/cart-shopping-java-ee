@@ -4,7 +4,7 @@
 
 <h1>Cart</h1>
 <c:choose>
-    <c:when test="${sessionScope.cart == null || sessionScope.cart.items.isEmpty()}">
+    <c:when test="${cart.items.isEmpty()}">
         <div class="alert alert-warning">Cart is empty.</div>
     </c:when>
 
@@ -18,7 +18,7 @@
                 <th>Total</th>
             </tr>
 
-            <c:forEach items="${sessionScope.cart.items}" var="item">
+            <c:forEach items="${cart.items}" var="item">
                 <tr>
                     <td>${item.product.id}</td>
                     <td>${item.product.name}</td>
@@ -30,7 +30,7 @@
 
             <tr>
                 <td colspan="4" style="text-align: right;">Total:</td>
-                <td>${sessionScope.cart.total}</td>
+                <td>${cart.total}</td>
             </tr>
         </table>
     </c:otherwise>

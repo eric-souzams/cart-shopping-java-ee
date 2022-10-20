@@ -10,7 +10,7 @@
             <input class="form-control" type="text" name="name" id="name" value="${product.name != null ? product.name : ""}">
         </div>
         <c:if test="${errors != null && errors.containsKey('name')}">
-            <span style="color: red;"><${errors.get("name")}></span>
+            <span style="color: red;">${errors.get("name")}</span>
         </c:if>
     </div>
 
@@ -20,7 +20,7 @@
             <input class="form-control" type="number" name="price" id="price" value="${product.price > 0 ? product.price : ""}">
         </div>
         <c:if test="${errors != null && errors.containsKey('price')}">
-            <span style="color: red;"><${errors.get("price")}></span>
+            <span style="color: red;">${errors.get("price")}</span>
         </c:if>
     </div>
 
@@ -30,7 +30,7 @@
             <input class="form-control" type="text" name="sku" id="sku" value="${product.sku != null ? product.sku : ""}">
         </div>
         <c:if test="${errors != null && errors.containsKey('sku')}">
-            <span style="color: red;"><${errors.get("sku")}></span>
+            <span style="color: red;">${errors.get("sku")}</span>
         </c:if>
     </div>
 
@@ -40,7 +40,7 @@
             <input class="form-control" type="date" name="created_at" id="created_at" value="${product.createdAt != null ? product.createdAt.format(DateTimeFormatter.ofPattern('yyyy-MM-dd')) : ""}">
         </div>
         <c:if test="${errors != null && errors.containsKey('created_at')}">
-            <span style="color: red;"><${errors.get("created_at")}></span>
+            <span style="color: red;">${errors.get("created_at")}</span>
         </c:if>
     </div>
 
@@ -55,7 +55,7 @@
             </select>
         </div>
         <c:if test="${errors != null && errors.containsKey('category')}">
-            <span style="color: red;"><${errors.get("category")}></span>
+            <span style="color: red;">${errors.get("category")}</span>
         </c:if>
     </div>
 

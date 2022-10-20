@@ -1,18 +1,20 @@
 package org.jakarta.cart.shopping.repositories;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import org.jakarta.cart.shopping.models.Category;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApplicationScoped
 public class CategoryRepositoryJdbcImpl implements Repository<Category> {
 
+    @Inject
+    @Named("conn")
     private Connection connection;
-
-    public CategoryRepositoryJdbcImpl(Connection connection) {
-        this.connection = connection;
-    }
 
     @Override
     public List<Category> listAll() throws SQLException {

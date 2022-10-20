@@ -2,8 +2,10 @@ package org.jakarta.cart.shopping.listenner;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebListener;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionEvent;
 import jakarta.servlet.http.HttpSessionListener;
+import org.jakarta.cart.shopping.models.Cart;
 
 @WebListener
 public class ApplicationListener implements ServletContextListener, ServletRequestListener, HttpSessionListener {
@@ -35,6 +37,12 @@ public class ApplicationListener implements ServletContextListener, ServletReque
     @Override
     public void sessionCreated(HttpSessionEvent se) {
         servletContext.log("Starting session http.");
+
+
+
+//        Cart cart = new Cart();
+//        HttpSession session = se.getSession();
+//        session.setAttribute("cart", cart);
     }
 
     @Override

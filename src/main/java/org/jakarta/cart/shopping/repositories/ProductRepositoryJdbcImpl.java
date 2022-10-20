@@ -1,18 +1,37 @@
 package org.jakarta.cart.shopping.repositories;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.PreDestroy;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
 import org.jakarta.cart.shopping.models.Category;
 import org.jakarta.cart.shopping.models.Product;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
+@ApplicationScoped
 public class ProductRepositoryJdbcImpl implements Repository<Product> {
 
+    @Inject
+    @Named("conn")
     private Connection connection;
 
-    public ProductRepositoryJdbcImpl(Connection connection) {
-        this.connection = connection;
+    @Inject
+    private Logger log;
+
+    @PostConstruct
+    public void init() {
+        log.info("Creating a bean: " + this.getClass().getName());
+    }
+
+    @PreDestroy
+    public void destroy() {
+        log.info("Destroying a bean:" + this.getClass().getName());
     }
 
     @Override

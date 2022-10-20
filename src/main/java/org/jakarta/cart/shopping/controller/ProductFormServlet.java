@@ -1,17 +1,17 @@
 package org.jakarta.cart.shopping.controller;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
 import org.jakarta.cart.shopping.models.Category;
 import org.jakarta.cart.shopping.models.Product;
 import org.jakarta.cart.shopping.services.ProductService;
-import org.jakarta.cart.shopping.services.impl.ProductServiceJdbcImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,11 +22,12 @@ import java.util.Optional;
 @WebServlet(value = "/products/form")
 public class ProductFormServlet extends HttpServlet {
 
+    @Inject
+    @ProductServicePrincipal
+    private ProductService productService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection connection = (Connection) req.getAttribute("conn");
-        ProductService productService = new ProductServiceJdbcImpl(connection);
-
         long productId;
         try {
             productId = Long.parseLong(req.getParameter("id"));
@@ -53,8 +54,6 @@ public class ProductFormServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Connection connection = (Connection) req.getAttribute("conn");
-        ProductService productService = new ProductServiceJdbcImpl(connection);
         Map<String, String> errors = new HashMap<>();
 
         String name = req.getParameter("name");

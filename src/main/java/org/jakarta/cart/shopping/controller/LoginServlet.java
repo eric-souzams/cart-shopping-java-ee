@@ -1,5 +1,6 @@
 package org.jakarta.cart.shopping.controller;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -14,6 +15,9 @@ import java.util.Optional;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
+    @Inject
+    private UserService userService;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("title", "Login");
@@ -25,7 +29,6 @@ public class LoginServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
 
-        UserService userService = new UserServiceImpl((Connection) req.getAttribute("conn"));
         Optional<User> credentials = userService.login(username, password);
 
         if (credentials.isPresent()) {

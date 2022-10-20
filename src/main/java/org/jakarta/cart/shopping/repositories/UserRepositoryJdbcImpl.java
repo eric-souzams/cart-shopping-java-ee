@@ -1,5 +1,8 @@
 package org.jakarta.cart.shopping.repositories;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import org.jakarta.cart.shopping.models.Category;
 import org.jakarta.cart.shopping.models.User;
 
@@ -7,13 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@ApplicationScoped
 public class UserRepositoryJdbcImpl implements UserRepository {
 
+    @Inject
+    @Named("conn")
     private Connection connection;
-
-    public UserRepositoryJdbcImpl(Connection connection) {
-        this.connection = connection;
-    }
 
     @Override
     public List<User> listAll() throws SQLException {
