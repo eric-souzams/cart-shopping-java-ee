@@ -1,36 +1,38 @@
 package org.jakarta.cart.shopping.services.impl;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import org.jakarta.cart.shopping.annotations.JpaRepository;
 import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
 import org.jakarta.cart.shopping.annotations.Service;
 import org.jakarta.cart.shopping.exceptions.ServiceJdbcException;
-import org.jakarta.cart.shopping.interceptors.Logging;
-import org.jakarta.cart.shopping.models.Category;
-import org.jakarta.cart.shopping.models.Product;
-import org.jakarta.cart.shopping.repositories.Repository;
+import org.jakarta.cart.shopping.interceptors.TransactionJpa;
+import org.jakarta.cart.shopping.models.entities.Category;
+import org.jakarta.cart.shopping.models.entities.Product;
+import org.jakarta.cart.shopping.repositories.CrudRepository;
 import org.jakarta.cart.shopping.services.ProductService;
 
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @ProductServicePrincipal
+@TransactionJpa
 public class ProductServiceImpl implements ProductService {
 
     @Inject
-    private Repository<Product> productRepository;
+    @JpaRepository
+    private CrudRepository<Product> productCrudRepository;
 
     @Inject
-    private Repository<Category> categoryRepository;
+    @JpaRepository
+    private CrudRepository<Category> categoryCrudRepository;
 
     // Product
     @Override
     public List<Product> list() {
         try {
-            return productRepository.listAll();
-        } catch (SQLException e) {
+            return productCrudRepository.listAll();
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -38,8 +40,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Product> findById(Long id) {
         try {
-            return Optional.ofNullable(productRepository.findById(id));
-        } catch (SQLException e) {
+            return Optional.ofNullable(productCrudRepository.findById(id));
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -47,8 +49,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(Product product) {
         try {
-            productRepository.save(product);
-        } catch (SQLException e) {
+            productCrudRepository.save(product);
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -56,8 +58,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void delete(Long id) {
         try {
-            productRepository.delete(id);
-        } catch (SQLException e) {
+            productCrudRepository.delete(id);
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -66,8 +68,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Category> listCategories() {
         try {
-            return categoryRepository.listAll();
-        } catch (SQLException e) {
+            return categoryCrudRepository.listAll();
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -75,8 +77,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Optional<Category> findCategoryById(Long id) {
         try {
-            return Optional.ofNullable(categoryRepository.findById(id));
-        } catch (SQLException e) {
+            return Optional.ofNullable(categoryCrudRepository.findById(id));
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -84,8 +86,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void saveCategory(Category category) {
         try {
-            categoryRepository.save(category);
-        } catch (SQLException e) {
+            categoryCrudRepository.save(category);
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }
@@ -93,8 +95,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void deleteCategory(Long id) {
         try {
-            categoryRepository.delete(id);
-        } catch (SQLException e) {
+            categoryCrudRepository.delete(id);
+        } catch (Exception e) {
             throw new ServiceJdbcException(e.getMessage());
         }
     }

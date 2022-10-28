@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
-import org.jakarta.cart.shopping.models.Product;
+import org.jakarta.cart.shopping.models.entities.Product;
 import org.jakarta.cart.shopping.services.*;
 
 import java.io.IOException;

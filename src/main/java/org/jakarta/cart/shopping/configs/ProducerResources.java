@@ -8,6 +8,8 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.enterprise.inject.spi.InjectionPoint;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import org.jakarta.cart.shopping.utils.JpaConnection;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -45,6 +47,20 @@ public class ProducerResources {
     public void close(@Disposes Connection connection) throws SQLException {
         connection.close();
         log.info("Closing Connection.");
+    }
+
+    @Named
+    @Produces
+    @ApplicationScoped
+    private EntityManager entityManagerBean() {
+        return JpaConnection.getEntityManager();
+    }
+
+    public void close(@Disposes EntityManager entityManager) {
+        if (entityManager.isOpen()) {
+            entityManager.close();
+            log.info("Closing connection with entity manager.");
+        }
     }
 
 }

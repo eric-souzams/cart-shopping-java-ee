@@ -1,10 +1,8 @@
 package org.jakarta.cart.shopping.services.impl;
 
-import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import org.jakarta.cart.shopping.annotations.Service;
-import org.jakarta.cart.shopping.interceptors.Logging;
 import org.jakarta.cart.shopping.services.LoginService;
 
 import java.util.Optional;

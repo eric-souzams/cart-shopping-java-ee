@@ -1,5 +1,7 @@
 package org.jakarta.cart.shopping.models;
 
+import org.jakarta.cart.shopping.models.entities.Product;
+
 import java.util.Objects;
 
 public class CartItem {

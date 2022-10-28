@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.jakarta.cart.shopping.annotations.ProductServicePrincipal;
 import org.jakarta.cart.shopping.models.Cart;
 import org.jakarta.cart.shopping.models.CartItem;
-import org.jakarta.cart.shopping.models.Product;
+import org.jakarta.cart.shopping.models.entities.Product;
 import org.jakarta.cart.shopping.services.ProductService;
 
 import java.io.IOException;

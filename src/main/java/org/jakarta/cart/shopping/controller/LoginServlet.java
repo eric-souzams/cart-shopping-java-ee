@@ -4,12 +4,10 @@ import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
-import org.jakarta.cart.shopping.models.User;
+import org.jakarta.cart.shopping.models.entities.User;
 import org.jakarta.cart.shopping.services.UserService;
-import org.jakarta.cart.shopping.services.impl.UserServiceImpl;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.util.Optional;
 
 @WebServlet("/login")

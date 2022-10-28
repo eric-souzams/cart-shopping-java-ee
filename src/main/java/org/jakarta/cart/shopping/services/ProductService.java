@@ -1,7 +1,7 @@
 package org.jakarta.cart.shopping.services;
 
-import org.jakarta.cart.shopping.models.Category;
-import org.jakarta.cart.shopping.models.Product;
+import org.jakarta.cart.shopping.models.entities.Category;
+import org.jakarta.cart.shopping.models.entities.Product;
 
 import java.util.List;
 import java.util.Optional;

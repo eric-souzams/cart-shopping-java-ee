@@ -5,7 +5,8 @@
 
     <interceptors>
         <class>org.jakarta.cart.shopping.interceptors.LoggingInterceptor</class>
-        <class>org.jakarta.cart.shopping.interceptors.TransactionalInterceptor</class>
+        <class>org.jakarta.cart.shopping.interceptors.TransactionalJdbcInterceptor</class>
+        <class>org.jakarta.cart.shopping.interceptors.TransactionalJpaInterceptor</class>
     </interceptors>
 
 </beans>

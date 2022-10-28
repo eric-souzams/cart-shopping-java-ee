@@ -1,6 +1,6 @@
 package org.jakarta.cart.shopping.services;
 
-import org.jakarta.cart.shopping.models.User;
+import org.jakarta.cart.shopping.models.entities.User;
 
 import java.util.Optional;
 

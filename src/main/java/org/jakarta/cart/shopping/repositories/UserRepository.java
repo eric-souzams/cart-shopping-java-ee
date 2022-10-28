@@ -1,11 +1,9 @@
 package org.jakarta.cart.shopping.repositories;
 
-import org.jakarta.cart.shopping.models.User;
+import org.jakarta.cart.shopping.models.entities.User;
 
-import java.sql.SQLException;
+public interface UserRepository extends CrudRepository<User> {
 
-public interface UserRepository extends Repository<User> {
-
-    User findByUsername(String username) throws SQLException;
+    User findByUsername(String username) throws Exception;
 
 }
