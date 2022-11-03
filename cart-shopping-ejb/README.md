@@ -21,8 +21,6 @@ This project was developed using the following technologies:
 - [Hibernate]()
 - [MYSQL]()
 - [Weld Servlet]()
-- [Jboss WildFly]()
-- [Apache Tomcat]()
 
 
 ## Building
